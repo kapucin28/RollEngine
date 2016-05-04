@@ -1,5 +1,6 @@
 package main;
 
+import alerts.ExitAlert;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -19,16 +20,20 @@ public class RollMain extends Application {
     //------------------------------------------------------------------------------------------------------------------
 
     // Main method------------------------------------------------------------------------------------------------------
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Application.launch(args);
     }
     //------------------------------------------------------------------------------------------------------------------
 
     // Start method-----------------------------------------------------------------------------------------------------
-    public void start(Stage stage){
+    public void start(Stage stage) {
         stage.setTitle("RollEngine");
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(e -> {
+            e.consume();
+            new ExitAlert();
+        });
     }
     //------------------------------------------------------------------------------------------------------------------
 }
