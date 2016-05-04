@@ -1,0 +1,24 @@
+.pane{
+    -fx-border-color: transparent;
+}
+
+.grid-pane{
+    -fx-border-color: transparent;
+}
+
+.label{
+    -fx-text-fill: red;
+}
+
+.button{
+    -fx-background-color: linear-gradient(grey 0%, black 100%);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-text-fill: red;
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+}
+
+.web-view > .virtual-flow > .scroll-bar > .increment-button,
+.web-view > .virtual-flow > .scroll-bar > .decrement-button {
+    -fx-opacity: 0;
+}

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * Created by TIMBULI REMUS K@puc!n on 04-May-16.
@@ -33,6 +34,7 @@ public class RollMain extends Application {
         //--------------------------------------------------------------------------------------------------------------
 
         stage.setTitle("RollEngine");
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(e -> {
