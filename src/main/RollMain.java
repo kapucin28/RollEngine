@@ -4,6 +4,8 @@ import alerts.ExitAlert;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -16,6 +18,7 @@ public class RollMain extends Application {
 
     // Scene & Pane variables-------------------------------------------------------------------------------------------
     private final Pane pane = new Pane();
+    private final ImageView imageView = new ImageView("resources/redbackground.jpg");
     private final Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
     private final Scene scene = new Scene(pane, bounds.getWidth(), bounds.getHeight());
     //------------------------------------------------------------------------------------------------------------------
@@ -34,6 +37,9 @@ public class RollMain extends Application {
         //--------------------------------------------------------------------------------------------------------------
 
         // Adding RollUI to pane----------------------------------------------------------------------------------------
+        pane.getChildren().add(imageView);
+        imageView.setFitWidth(bounds.getWidth());
+        imageView.setFitHeight(bounds.getHeight());
         pane.getChildren().add(new RollUI());
         //--------------------------------------------------------------------------------------------------------------
 
