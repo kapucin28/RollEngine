@@ -14,9 +14,9 @@ import javafx.stage.Stage;
 public class RollMain extends Application {
 
     // Scene & Pane variables-------------------------------------------------------------------------------------------
-    private Pane pane = new Pane();
-    private Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-    private Scene scene = new Scene(pane, bounds.getWidth(), bounds.getHeight());
+    private final Pane pane = new Pane();
+    private final Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+    private final Scene scene = new Scene(pane, bounds.getWidth(), bounds.getHeight());
     //------------------------------------------------------------------------------------------------------------------
 
     // Main method------------------------------------------------------------------------------------------------------
@@ -27,6 +27,11 @@ public class RollMain extends Application {
 
     // Start method-----------------------------------------------------------------------------------------------------
     public void start(Stage stage) {
+
+        // Scene stylesheet---------------------------------------------------------------------------------------------
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        //--------------------------------------------------------------------------------------------------------------
+
         stage.setTitle("RollEngine");
         stage.setScene(scene);
         stage.show();
