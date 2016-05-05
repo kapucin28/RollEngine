@@ -7,13 +7,12 @@
 }
 
 .label{
-    -fx-text-fill: red;
+    -fx-text-fill: green;
 }
 
 .button{
-    -fx-background-color: linear-gradient(grey 0%, black 100%);
+    -fx-background-color: green;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-    -fx-text-fill: red;
     -fx-background-radius: 5,4,3,5;
     -fx-background-insets: 0,1,2,0;
 }
