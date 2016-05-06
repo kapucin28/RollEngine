@@ -1,6 +1,7 @@
 package main;
 
 import javafx.scene.layout.Pane;
+import javafx.scene.web.PopupFeatures;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
@@ -18,7 +19,15 @@ public class Web extends Pane {
     //------------------------------------------------------------------------------------------------------------------
 
     public Web() {
-
+        popupSetup();
     }
 
+    // Popup method-----------------------------------------------------------------------------------------------------
+    private void popupSetup() {
+        engine.setCreatePopupHandler((PopupFeatures config) -> {
+            popup.setFontScale(0.8);
+            return popup.getEngine();
+        });
+    }
+    //------------------------------------------------------------------------------------------------------------------
 }
