@@ -1,7 +1,10 @@
 package main;
 
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
@@ -20,6 +23,12 @@ class RollUI extends Pane {
     private final GridPane searchingGrid = new GridPane();
     private final TabPane webPane = new TabPane();
     private final GridPane root = new GridPane();
+    //------------------------------------------------------------------------------------------------------------------
+
+    // Web content user tools variables---------------------------------------------------------------------------------
+    private ComboBox<String> showHistory = new ComboBox<>();
+    private TextField search = new TextField();
+    private final Button exit = new Button("Exit");
     //------------------------------------------------------------------------------------------------------------------
 
     // Constructor------------------------------------------------------------------------------------------------------
