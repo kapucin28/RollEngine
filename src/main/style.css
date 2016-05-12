@@ -7,11 +7,11 @@
 }
 
 .label{
-    -fx-text-fill: green;
+    -fx-text-fill: #66FF00;
 }
 
 .button{
-    -fx-background-color: green;
+    -fx-background-color: #66FF00;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
     -fx-background-radius: 5,4,3,5;
     -fx-background-insets: 0,1,2,0;

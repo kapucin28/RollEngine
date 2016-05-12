@@ -1,5 +1,6 @@
 package main;
 
+import javafx.collections.ListChangeListener;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -7,6 +8,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.web.WebHistory;
 import javafx.stage.Screen;
 
 /**
@@ -28,24 +30,56 @@ class RollUI extends Pane {
     // Web content user tools variables---------------------------------------------------------------------------------
     private ComboBox<String> showHistory = new ComboBox<>();
     private TextField search = new TextField();
-    private final Button exit = new Button("Exit");
+    private final Button exitButton = new Button("Exit");
+    private final Button newTab = new Button("New Tab");
     //------------------------------------------------------------------------------------------------------------------
 
     // Constructor------------------------------------------------------------------------------------------------------
     RollUI() {
         layoutSetup();
+        historyCollection();
     }
     //------------------------------------------------------------------------------------------------------------------
 
     // Layout setup method----------------------------------------------------------------------------------------------
     private void layoutSetup() {
+
+        // Searching grid setup-----------------------------------------------------------------------------------------
+        searchingGrid.setHgap(10);
+        searchingGrid.setVgap(10);
+        searchingGrid.add(exitButton, 0, 0);
+        searchingGrid.add(showHistory, 1, 0);
+        searchingGrid.add(search, 2, 0);
+        searchingGrid.add(newTab, 3, 0);
         searchingGrid.setPrefHeight(bounds.getHeight() - 700);
         searchingGrid.setPrefWidth(bounds.getWidth());
-        webPane.setPrefHeight(bounds.getHeight() - 138);
-        webPane.setPrefWidth(bounds.getWidth() - 40);
+        //--------------------------------------------------------------------------------------------------------------
+
+        // Web pane setup-----------------------------------------------------------------------------------------------
+        webPane.setPrefHeight(bounds.getHeight() - 200);
+        webPane.setPrefWidth(bounds.getWidth() - 100);
+        //--------------------------------------------------------------------------------------------------------------
+
+        // Root setup---------------------------------------------------------------------------------------------------
         root.add(searchingGrid, 0, 0);
         root.add(webPane, 0, 1);
         getChildren().add(root);
+        //--------------------------------------------------------------------------------------------------------------
+    }
+    //------------------------------------------------------------------------------------------------------------------
+
+    // Collecting web history-------------------------------------------------------------------------------------------
+    private void historyCollection(){
+        web.getHistory().getEntries().addListener((ListChangeListener.Change<? extends WebHistory.Entry> h) ->{
+            h.next();
+            h.getRemoved().stream().forEach((e) -> showHistory.getItems().remove(e.getUrl()));
+            h.getAddedSubList().stream().forEach((e) -> showHistory.getItems().add(e.getUrl()));
+        });
     }
     //------------------------------------------------------------------------------------------------------------------
 }
+
+
+
+
+
