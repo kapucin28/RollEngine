@@ -1,5 +1,6 @@
 package main;
 
+import alerts.ExitAlert;
 import javafx.collections.ListChangeListener;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
@@ -37,7 +38,9 @@ class RollUI extends Pane {
     // Constructor------------------------------------------------------------------------------------------------------
     RollUI() {
         layoutSetup();
-        historyCollection();
+        historySetup();
+        jumpToSetup();
+        exitSetup();
     }
     //------------------------------------------------------------------------------------------------------------------
 
@@ -69,7 +72,7 @@ class RollUI extends Pane {
     //------------------------------------------------------------------------------------------------------------------
 
     // Collecting web history-------------------------------------------------------------------------------------------
-    private void historyCollection(){
+    private void historySetup(){
         web.getHistory().getEntries().addListener((ListChangeListener.Change<? extends WebHistory.Entry> h) ->{
             h.next();
             h.getRemoved().stream().forEach((e) -> showHistory.getItems().remove(e.getUrl()));
@@ -77,9 +80,23 @@ class RollUI extends Pane {
         });
     }
     //------------------------------------------------------------------------------------------------------------------
+
+    // Controlling history----------------------------------------------------------------------------------------------
+    private void jumpToSetup(){
+        showHistory.setOnAction(e ->{
+            int offset = showHistory.getSelectionModel().getSelectedIndex() - web.getHistory().getCurrentIndex();
+            web.getHistory().go(offset);
+            showHistory.setValue("History");
+        });
+    }
+    //------------------------------------------------------------------------------------------------------------------
+
+    // Exit method------------------------------------------------------------------------------------------------------
+    private void exitSetup(){
+        exitButton.setOnAction(e ->{
+            e.consume();
+            new ExitAlert();
+        });
+    }
+    //------------------------------------------------------------------------------------------------------------------
 }
-
-
-
-
-
