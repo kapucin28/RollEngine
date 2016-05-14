@@ -2,11 +2,10 @@ package main;
 
 import alerts.ExitAlert;
 import javafx.collections.ListChangeListener;
+import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.web.WebHistory;
@@ -40,6 +39,7 @@ class RollUI extends Pane {
         layoutSetup();
         historySetup();
         jumpToSetup();
+        searchSetup();
         exitSetup();
     }
     //------------------------------------------------------------------------------------------------------------------
@@ -59,7 +59,8 @@ class RollUI extends Pane {
         //--------------------------------------------------------------------------------------------------------------
 
         // Web pane setup-----------------------------------------------------------------------------------------------
-        webPane.setPrefHeight(bounds.getHeight() - 200);
+        webPane.setPadding(new Insets(0, 50, 0, 50));
+        webPane.setPrefHeight(bounds.getHeight() - 100);
         webPane.setPrefWidth(bounds.getWidth() - 100);
         //--------------------------------------------------------------------------------------------------------------
 
@@ -87,6 +88,22 @@ class RollUI extends Pane {
             int offset = showHistory.getSelectionModel().getSelectedIndex() - web.getHistory().getCurrentIndex();
             web.getHistory().go(offset);
             showHistory.setValue("History");
+        });
+    }
+    //------------------------------------------------------------------------------------------------------------------
+
+    // Search method----------------------------------------------------------------------------------------------------
+    private void searchSetup(){
+        search.setOnKeyPressed(e ->{
+            if (e.getCode() == KeyCode.ENTER){
+                web.getEngine().load("https://www." + search.getText() + ".com");
+
+                Tab tab = new Tab();
+                tab.setContent(web);
+                tab.setText("Primary Tab");
+                webPane.getTabs().add(tab);
+                search.clear();
+            }
         });
     }
     //------------------------------------------------------------------------------------------------------------------

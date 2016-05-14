@@ -11,7 +11,7 @@ import javafx.stage.Screen;
 /**
  * Created by TIMBULI REMUS K@puc!n on 05-May-16.
  */
-public class Web extends Pane {
+class Web extends Pane {
 
     // Browser variables------------------------------------------------------------------------------------------------
     private Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
@@ -21,15 +21,15 @@ public class Web extends Pane {
     private WebHistory history = engine.getHistory();
     //------------------------------------------------------------------------------------------------------------------
 
-    public Web() {
+    Web() {
         webViewLayout();
         popupSetup();
     }
 
     // Web layout method------------------------------------------------------------------------------------------------
     private void webViewLayout() {
-        webView.setPrefWidth(bounds.getWidth() - 300);
-        webView.setPrefHeight(bounds.getHeight() - 200);
+        webView.setPrefWidth(bounds.getWidth() - 100);
+        webView.setPrefHeight(bounds.getHeight() - 100);
         getChildren().add(webView);
     }
     //------------------------------------------------------------------------------------------------------------------
@@ -44,11 +44,11 @@ public class Web extends Pane {
     //------------------------------------------------------------------------------------------------------------------
 
     // Getters & Setters------------------------------------------------------------------------------------------------
-    public WebEngine getEngine() {
+    WebEngine getEngine() {
         return engine;
     }
 
-    public WebHistory getHistory() {
+    WebHistory getHistory() {
         return history;
     }
     //------------------------------------------------------------------------------------------------------------------
