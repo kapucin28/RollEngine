@@ -24,6 +24,9 @@ class RollUI extends Pane {
     private final Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
     private final GridPane searchingGrid = new GridPane();
     private final TabPane webPane = new TabPane();
+    private Tab tab = new Tab();
+    private Tab spawnedTab;
+    private Web spawnedWeb;
     private final GridPane root = new GridPane();
     //------------------------------------------------------------------------------------------------------------------
 
@@ -40,6 +43,7 @@ class RollUI extends Pane {
         historySetup();
         jumpToSetup();
         searchSetup();
+        newTabSetup();
         exitSetup();
     }
     //------------------------------------------------------------------------------------------------------------------
@@ -73,8 +77,8 @@ class RollUI extends Pane {
     //------------------------------------------------------------------------------------------------------------------
 
     // Collecting web history-------------------------------------------------------------------------------------------
-    private void historySetup(){
-        web.getHistory().getEntries().addListener((ListChangeListener.Change<? extends WebHistory.Entry> h) ->{
+    private void historySetup() {
+        web.getHistory().getEntries().addListener((ListChangeListener.Change<? extends WebHistory.Entry> h) -> {
             h.next();
             h.getRemoved().stream().forEach((e) -> showHistory.getItems().remove(e.getUrl()));
             h.getAddedSubList().stream().forEach((e) -> showHistory.getItems().add(e.getUrl()));
@@ -83,8 +87,8 @@ class RollUI extends Pane {
     //------------------------------------------------------------------------------------------------------------------
 
     // Controlling history----------------------------------------------------------------------------------------------
-    private void jumpToSetup(){
-        showHistory.setOnAction(e ->{
+    private void jumpToSetup() {
+        showHistory.setOnAction(e -> {
             int offset = showHistory.getSelectionModel().getSelectedIndex() - web.getHistory().getCurrentIndex();
             web.getHistory().go(offset);
             showHistory.setValue("History");
@@ -93,12 +97,12 @@ class RollUI extends Pane {
     //------------------------------------------------------------------------------------------------------------------
 
     // Search method----------------------------------------------------------------------------------------------------
-    private void searchSetup(){
-        search.setOnKeyPressed(e ->{
-            if (e.getCode() == KeyCode.ENTER){
+    private void searchSetup() {
+        search.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
                 web.getEngine().load("https://www." + search.getText() + ".com");
 
-                Tab tab = new Tab();
+                tab.setClosable(false);
                 tab.setContent(web);
                 tab.setText("Primary Tab");
                 webPane.getTabs().add(tab);
@@ -108,9 +112,22 @@ class RollUI extends Pane {
     }
     //------------------------------------------------------------------------------------------------------------------
 
+    // New Tab method---------------------------------------------------------------------------------------------------
+    private void newTabSetup() {
+        newTab.setOnAction(e -> {
+            spawnedTab = new Tab();
+            spawnedWeb = new Web();
+            spawnedWeb.getEngine().load("https://www.google.com");
+            spawnedTab.setText("New Tab");
+            spawnedTab.setContent(spawnedWeb);
+            webPane.getTabs().add(spawnedTab);
+        });
+    }
+    //------------------------------------------------------------------------------------------------------------------
+
     // Exit method------------------------------------------------------------------------------------------------------
-    private void exitSetup(){
-        exitButton.setOnAction(e ->{
+    private void exitSetup() {
+        exitButton.setOnAction(e -> {
             e.consume();
             new ExitAlert();
         });
