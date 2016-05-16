@@ -54,6 +54,7 @@ class RollUI extends Pane {
         // Searching grid setup-----------------------------------------------------------------------------------------
         searchingGrid.setHgap(10);
         searchingGrid.setVgap(10);
+        searchingGrid.setPadding(new Insets(0, bounds.getWidth() / 3, 0, bounds.getWidth() / 3));
         searchingGrid.add(exitButton, 0, 0);
         searchingGrid.add(showHistory, 1, 0);
         searchingGrid.add(search, 2, 0);
