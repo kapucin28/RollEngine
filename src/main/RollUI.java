@@ -13,6 +13,9 @@ import javafx.stage.Screen;
 
 /**
  * Created by TIMBULI REMUS K@puc!n on 04-May-16.
+ *
+ *      This class represents the main GUI where
+ * all the graphics are created and managed
  */
 class RollUI extends Pane {
 
@@ -81,8 +84,8 @@ class RollUI extends Pane {
     private void historySetup() {
         web.getHistory().getEntries().addListener((ListChangeListener.Change<? extends WebHistory.Entry> h) -> {
             h.next();
-            h.getRemoved().stream().forEach((e) -> showHistory.getItems().remove(e.getUrl()));
-            h.getAddedSubList().stream().forEach((e) -> showHistory.getItems().add(e.getUrl()));
+            h.getRemoved().forEach((e) -> showHistory.getItems().remove(e.getUrl()));
+            h.getAddedSubList().forEach((e) -> showHistory.getItems().add(e.getUrl()));
         });
     }
     //------------------------------------------------------------------------------------------------------------------
