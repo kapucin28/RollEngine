@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 /**
  * Created by TIMBULI REMUS K@puc!n on 04-May-16.
+ *
+ *      This is the main class where the stage and scene are created
  */
 public class RollMain extends Application {
 
