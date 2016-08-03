@@ -10,6 +10,8 @@ import javafx.stage.Screen;
 
 /**
  * Created by TIMBULI REMUS K@puc!n on 05-May-16.
+ *
+ *      This is the class where the web engine is created
  */
 class Web extends Pane {
 
