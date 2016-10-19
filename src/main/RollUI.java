@@ -1,15 +1,14 @@
 package main;
 
 import alerts.ExitAlert;
+import interfaces.Scale;
 import javafx.collections.ListChangeListener;
 import javafx.geometry.Insets;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.web.WebHistory;
-import javafx.stage.Screen;
 
 /**
  * Created by TIMBULI REMUS K@puc!n on 04-May-16.
@@ -17,14 +16,13 @@ import javafx.stage.Screen;
  *      This class represents the main GUI where
  * all the graphics are created and managed
  */
-class RollUI extends Pane {
+class RollUI extends Pane implements Scale{
 
     // Constructing a web object----------------------------------------------------------------------------------------
     private Web web = new Web();
     //------------------------------------------------------------------------------------------------------------------
 
     // Pane variables---------------------------------------------------------------------------------------------------
-    private final Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
     private final GridPane searchingGrid = new GridPane();
     private final TabPane webPane = new TabPane();
     private Tab tab = new Tab();
@@ -57,19 +55,19 @@ class RollUI extends Pane {
         // Searching grid setup-----------------------------------------------------------------------------------------
         searchingGrid.setHgap(10);
         searchingGrid.setVgap(10);
-        searchingGrid.setPadding(new Insets(0, bounds.getWidth() / 3, 0, bounds.getWidth() / 3));
+        searchingGrid.setPadding(new Insets(0, SCREEN_WIDTH / 3, 0, SCREEN_HEIGHT / 3));
         searchingGrid.add(exitButton, 0, 0);
         searchingGrid.add(showHistory, 1, 0);
         searchingGrid.add(search, 2, 0);
         searchingGrid.add(newTab, 3, 0);
-        searchingGrid.setPrefHeight(bounds.getHeight() - 700);
-        searchingGrid.setPrefWidth(bounds.getWidth());
+        searchingGrid.setPrefHeight(SCREEN_HEIGHT - 700);
+        searchingGrid.setPrefWidth(SCREEN_WIDTH);
         //--------------------------------------------------------------------------------------------------------------
 
         // Web pane setup-----------------------------------------------------------------------------------------------
         webPane.setPadding(new Insets(0, 50, 0, 50));
-        webPane.setPrefHeight(bounds.getHeight() - 100);
-        webPane.setPrefWidth(bounds.getWidth() - 100);
+        webPane.setPrefHeight(SCREEN_HEIGHT - 100);
+        webPane.setPrefWidth(SCREEN_WIDTH - 100);
         //--------------------------------------------------------------------------------------------------------------
 
         // Root setup---------------------------------------------------------------------------------------------------
