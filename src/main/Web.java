@@ -1,22 +1,20 @@
 package main;
 
-import javafx.geometry.Rectangle2D;
+import interfaces.Scale;
 import javafx.scene.layout.Pane;
 import javafx.scene.web.PopupFeatures;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
-import javafx.stage.Screen;
 
 /**
  * Created by TIMBULI REMUS K@puc!n on 05-May-16.
  *
  *      This is the class where the web engine is created
  */
-class Web extends Pane {
+class Web extends Pane implements Scale{
 
     // Browser variables------------------------------------------------------------------------------------------------
-    private Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
     private WebView webView = new WebView();
     private WebView popup = new WebView();
     private WebEngine engine = webView.getEngine();
@@ -30,8 +28,8 @@ class Web extends Pane {
 
     // Web layout method------------------------------------------------------------------------------------------------
     private void webViewLayout() {
-        webView.setPrefWidth(bounds.getWidth() - 100);
-        webView.setPrefHeight(bounds.getHeight() - 100);
+        webView.setPrefWidth(SCREEN_WIDTH - 100);
+        webView.setPrefHeight(SCREEN_HEIGHT - 100);
         getChildren().add(webView);
     }
     //------------------------------------------------------------------------------------------------------------------
