@@ -1,11 +1,10 @@
 package main;
 
 import alerts.ExitAlert;
+import interfaces.Scale;
 import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -13,12 +12,11 @@ import javafx.stage.Stage;
  *
  *      This is the main class where the stage and scene are created
  */
-public class RollMain extends Application {
+public class RollMain extends Application implements Scale{
 
     // Scene & Pane variables-------------------------------------------------------------------------------------------
     private final Pane pane = new Pane();
-    private final Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-    private final Scene scene = new Scene(pane, bounds.getWidth(), bounds.getHeight());
+    private final Scene scene = new Scene(pane, SCREEN_WIDTH, SCREEN_HEIGHT);
     //------------------------------------------------------------------------------------------------------------------
 
     // Main method------------------------------------------------------------------------------------------------------

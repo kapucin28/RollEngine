@@ -47,7 +47,7 @@
 
 .combo-box-base{
     -fx-background-color: linear-gradient(#001EFF 0%, #FFFFFF 100%);
-    -fx-pref-width: 100;
+    -fx-pref-width: 200;
     -fx-pref-height: 20;
 }
 
@@ -55,7 +55,7 @@
     -fx-background-color: linear-gradient(#001EFF 0%, #FFFFFF 100%);
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
     -fx-text-fill: #FFFFFF;
-    -fx-pref-width: 100;
+    -fx-pref-width: 500;
     -fx-pref-height: 20;
     -fx-background-radius: 5,4,3,5;
     -fx-background-insets: 0,1,2,0;
