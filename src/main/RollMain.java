@@ -1,6 +1,7 @@
 package main;
 
 import alerts.ExitAlert;
+import interfaces.ObjectTitles;
 import interfaces.Scale;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -29,7 +30,7 @@ public class RollMain extends Application implements Scale{
     public void start(Stage stage) {
 
         // Scene stylesheet---------------------------------------------------------------------------------------------
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource(ObjectTitles.cssFile).toExternalForm());
         //--------------------------------------------------------------------------------------------------------------
 
         // Adding RollUI to pane----------------------------------------------------------------------------------------
@@ -37,7 +38,7 @@ public class RollMain extends Application implements Scale{
         //--------------------------------------------------------------------------------------------------------------
 
         // Stage setup--------------------------------------------------------------------------------------------------
-        stage.setTitle("RollEngine");
+        stage.setTitle(ObjectTitles.stageTitle);
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(e -> {
