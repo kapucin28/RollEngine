@@ -1,6 +1,7 @@
 package main;
 
 import alerts.ExitAlert;
+import interfaces.ObjectTitles;
 import interfaces.Scale;
 import javafx.collections.ListChangeListener;
 import javafx.geometry.Insets;
@@ -34,8 +35,8 @@ class RollUI extends Pane implements Scale{
     // Web content user tools variables---------------------------------------------------------------------------------
     private ComboBox<String> showHistory = new ComboBox<>();
     private TextField search = new TextField();
-    private final Button exitButton = new Button("Exit");
-    private final Button newTab = new Button("New Tab");
+    private final Button exitButton = new Button(ObjectTitles.exitButton);
+    private final Button newTab = new Button(ObjectTitles.newTab);
     //------------------------------------------------------------------------------------------------------------------
 
     // Constructor------------------------------------------------------------------------------------------------------
@@ -93,7 +94,7 @@ class RollUI extends Pane implements Scale{
         showHistory.setOnAction(e -> {
             int offset = showHistory.getSelectionModel().getSelectedIndex() - web.getHistory().getCurrentIndex();
             web.getHistory().go(offset);
-            showHistory.setValue("History");
+            showHistory.setValue(ObjectTitles.historyTitle);
         });
     }
     //------------------------------------------------------------------------------------------------------------------
@@ -102,11 +103,11 @@ class RollUI extends Pane implements Scale{
     private void searchSetup() {
         search.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
-                web.getEngine().load("https://www." + search.getText() + ".com");
+                web.getEngine().load(ObjectTitles.webProtocol + search.getText() + ObjectTitles.webDomain);
 
                 tab.setClosable(false);
                 tab.setContent(web);
-                tab.setText("Primary Tab");
+                tab.setText(ObjectTitles.defaultTabTitle);
                 webPane.getTabs().add(tab);
                 search.clear();
             }
@@ -119,8 +120,8 @@ class RollUI extends Pane implements Scale{
         newTab.setOnAction(e -> {
             spawnedTab = new Tab();
             spawnedWeb = new Web();
-            spawnedWeb.getEngine().load("https://www.google.com");
-            spawnedTab.setText("New Tab");
+            spawnedWeb.getEngine().load(ObjectTitles.defaultSearchEngine);
+            spawnedTab.setText(ObjectTitles.spawnedTabTitle);
             spawnedTab.setContent(spawnedWeb);
             webPane.getTabs().add(spawnedTab);
         });
